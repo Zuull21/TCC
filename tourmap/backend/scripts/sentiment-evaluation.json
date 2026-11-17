@@ -1,0 +1,2553 @@
+{
+  "generated_at": "2026-11-10T02:38:00.212Z",
+  "threshold": 0.65,
+  "engine": {
+    "engine": "local",
+    "dtype": "fp32"
+  },
+  "models": {
+    "m1": {
+      "hub": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+      "onnx": "Xenova/twitter-roberta-base-sentiment-latest"
+    },
+    "m2": {
+      "hub": "lxyuan/distilbert-base-multilingual-cased-sentiments-student",
+      "onnx": "Xenova/distilbert-base-multilingual-cased-sentiments-student"
+    }
+  },
+  "results": {
+    "A": {
+      "M3 Palavras-chave": {
+        "accuracy": 0.9666666666666667,
+        "macroP": 0.9696969696969697,
+        "macroR": 0.9666666666666667,
+        "macroF1": 0.9665831244778613,
+        "perClass": {
+          "positive": {
+            "tp": 9,
+            "fp": 0,
+            "fn": 1,
+            "precision": 1,
+            "recall": 0.9,
+            "f1": 0.9473684210526316
+          },
+          "neutral": {
+            "tp": 10,
+            "fp": 1,
+            "fn": 0,
+            "precision": 0.9090909090909091,
+            "recall": 1,
+            "f1": 0.9523809523809523
+          },
+          "negative": {
+            "tp": 10,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1,
+            "recall": 1,
+            "f1": 1
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 9,
+            "neutral": 1,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "neutral": 10,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 0,
+            "negative": 10
+          }
+        }
+      },
+      "M1 RoBERTa": {
+        "accuracy": 0.4666666666666667,
+        "macroP": 0.7948717948717948,
+        "macroR": 0.4666666666666666,
+        "macroF1": 0.40740740740740744,
+        "perClass": {
+          "positive": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 8,
+            "precision": 1,
+            "recall": 0.2,
+            "f1": 0.33333333333333337
+          },
+          "neutral": {
+            "tp": 10,
+            "fp": 16,
+            "fn": 0,
+            "precision": 0.38461538461538464,
+            "recall": 1,
+            "f1": 0.5555555555555556
+          },
+          "negative": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 8,
+            "precision": 1,
+            "recall": 0.2,
+            "f1": 0.33333333333333337
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 2,
+            "neutral": 8,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "neutral": 10,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 8,
+            "negative": 2
+          }
+        }
+      },
+      "M2 DistilBERT": {
+        "accuracy": 0.5666666666666667,
+        "macroP": 0.7245614035087719,
+        "macroR": 0.5666666666666667,
+        "macroF1": 0.5008359456635318,
+        "perClass": {
+          "positive": {
+            "tp": 9,
+            "fp": 10,
+            "fn": 1,
+            "precision": 0.47368421052631576,
+            "recall": 0.9,
+            "f1": 0.6206896551724138
+          },
+          "neutral": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 9,
+            "precision": 1,
+            "recall": 0.1,
+            "f1": 0.18181818181818182
+          },
+          "negative": {
+            "tp": 7,
+            "fp": 3,
+            "fn": 3,
+            "precision": 0.7,
+            "recall": 0.7,
+            "f1": 0.7
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 9,
+            "neutral": 0,
+            "negative": 1
+          },
+          "neutral": {
+            "positive": 7,
+            "neutral": 1,
+            "negative": 2
+          },
+          "negative": {
+            "positive": 3,
+            "neutral": 0,
+            "negative": 7
+          }
+        }
+      },
+      "M2 + θ simples": {
+        "accuracy": 0.6666666666666666,
+        "macroP": 0.75,
+        "macroR": 0.6666666666666666,
+        "macroF1": 0.6576479076479077,
+        "perClass": {
+          "positive": {
+            "tp": 9,
+            "fp": 3,
+            "fn": 1,
+            "precision": 0.75,
+            "recall": 0.9,
+            "f1": 0.8181818181818182
+          },
+          "neutral": {
+            "tp": 7,
+            "fp": 7,
+            "fn": 3,
+            "precision": 0.5,
+            "recall": 0.7,
+            "f1": 0.5833333333333334
+          },
+          "negative": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 6,
+            "precision": 1,
+            "recall": 0.4,
+            "f1": 0.5714285714285715
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 9,
+            "neutral": 1,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 3,
+            "neutral": 7,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 6,
+            "negative": 4
+          }
+        }
+      },
+      "M2 + híbrido (produção)": {
+        "accuracy": 0.7666666666666667,
+        "macroP": 0.7954545454545454,
+        "macroR": 0.7666666666666666,
+        "macroF1": 0.7694592988710637,
+        "perClass": {
+          "positive": {
+            "tp": 9,
+            "fp": 3,
+            "fn": 1,
+            "precision": 0.75,
+            "recall": 0.9,
+            "f1": 0.8181818181818182
+          },
+          "neutral": {
+            "tp": 7,
+            "fp": 4,
+            "fn": 3,
+            "precision": 0.6363636363636364,
+            "recall": 0.7,
+            "f1": 0.6666666666666666
+          },
+          "negative": {
+            "tp": 7,
+            "fp": 0,
+            "fn": 3,
+            "precision": 1,
+            "recall": 0.7,
+            "f1": 0.8235294117647058
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 9,
+            "neutral": 1,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 3,
+            "neutral": 7,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 3,
+            "negative": 7
+          }
+        }
+      },
+      "M1 + híbrido (controle)": {
+        "accuracy": 0.4666666666666667,
+        "macroP": 0.7948717948717948,
+        "macroR": 0.4666666666666666,
+        "macroF1": 0.40740740740740744,
+        "perClass": {
+          "positive": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 8,
+            "precision": 1,
+            "recall": 0.2,
+            "f1": 0.33333333333333337
+          },
+          "neutral": {
+            "tp": 10,
+            "fp": 16,
+            "fn": 0,
+            "precision": 0.38461538461538464,
+            "recall": 1,
+            "f1": 0.5555555555555556
+          },
+          "negative": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 8,
+            "precision": 1,
+            "recall": 0.2,
+            "f1": 0.33333333333333337
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 2,
+            "neutral": 8,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "neutral": 10,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 8,
+            "negative": 2
+          }
+        }
+      }
+    },
+    "B": {
+      "M3 Palavras-chave": {
+        "accuracy": 0.3,
+        "macroP": 0.4252873563218391,
+        "macroR": 0.3636363636363636,
+        "macroF1": 0.1996996996996997,
+        "perClass": {
+          "positive": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 10,
+            "precision": 1,
+            "recall": 0.09090909090909091,
+            "f1": 0.16666666666666669
+          },
+          "neutral": {
+            "tp": 8,
+            "fp": 21,
+            "fn": 0,
+            "precision": 0.27586206896551724,
+            "recall": 1,
+            "f1": 0.4324324324324324
+          },
+          "negative": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 11,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 1,
+            "neutral": 10,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "neutral": 8,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 11,
+            "negative": 0
+          }
+        }
+      },
+      "M1 RoBERTa": {
+        "accuracy": 0.26666666666666666,
+        "macroP": 0.08888888888888889,
+        "macroR": 0.3333333333333333,
+        "macroF1": 0.14035087719298248,
+        "perClass": {
+          "positive": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 11,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          },
+          "neutral": {
+            "tp": 8,
+            "fp": 22,
+            "fn": 0,
+            "precision": 0.26666666666666666,
+            "recall": 1,
+            "f1": 0.4210526315789474
+          },
+          "negative": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 11,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 0,
+            "neutral": 11,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "neutral": 8,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 11,
+            "negative": 0
+          }
+        }
+      },
+      "M2 DistilBERT": {
+        "accuracy": 0.6333333333333333,
+        "macroP": 0.6931372549019609,
+        "macroR": 0.6212121212121212,
+        "macroF1": 0.629940235203393,
+        "perClass": {
+          "positive": {
+            "tp": 9,
+            "fp": 8,
+            "fn": 2,
+            "precision": 0.5294117647058824,
+            "recall": 0.8181818181818182,
+            "f1": 0.6428571428571428
+          },
+          "neutral": {
+            "tp": 4,
+            "fp": 1,
+            "fn": 4,
+            "precision": 0.8,
+            "recall": 0.5,
+            "f1": 0.6153846153846154
+          },
+          "negative": {
+            "tp": 6,
+            "fp": 2,
+            "fn": 5,
+            "precision": 0.75,
+            "recall": 0.5454545454545454,
+            "f1": 0.631578947368421
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 9,
+            "neutral": 1,
+            "negative": 1
+          },
+          "neutral": {
+            "positive": 3,
+            "neutral": 4,
+            "negative": 1
+          },
+          "negative": {
+            "positive": 5,
+            "neutral": 0,
+            "negative": 6
+          }
+        }
+      },
+      "M2 + θ simples": {
+        "accuracy": 0.6,
+        "macroP": 0.7999999999999999,
+        "macroR": 0.6363636363636364,
+        "macroF1": 0.5925925925925927,
+        "perClass": {
+          "positive": {
+            "tp": 7,
+            "fp": 0,
+            "fn": 4,
+            "precision": 1,
+            "recall": 0.6363636363636364,
+            "f1": 0.7777777777777778
+          },
+          "neutral": {
+            "tp": 8,
+            "fp": 12,
+            "fn": 0,
+            "precision": 0.4,
+            "recall": 1,
+            "f1": 0.5714285714285715
+          },
+          "negative": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 8,
+            "precision": 1,
+            "recall": 0.2727272727272727,
+            "f1": 0.42857142857142855
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 7,
+            "neutral": 4,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "neutral": 8,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 8,
+            "negative": 3
+          }
+        }
+      },
+      "M2 + híbrido (produção)": {
+        "accuracy": 0.6333333333333333,
+        "macroP": 0.8070175438596491,
+        "macroR": 0.6666666666666666,
+        "macroF1": 0.6210897614406387,
+        "perClass": {
+          "positive": {
+            "tp": 8,
+            "fp": 0,
+            "fn": 3,
+            "precision": 1,
+            "recall": 0.7272727272727273,
+            "f1": 0.8421052631578948
+          },
+          "neutral": {
+            "tp": 8,
+            "fp": 11,
+            "fn": 0,
+            "precision": 0.42105263157894735,
+            "recall": 1,
+            "f1": 0.5925925925925926
+          },
+          "negative": {
+            "tp": 3,
+            "fp": 0,
+            "fn": 8,
+            "precision": 1,
+            "recall": 0.2727272727272727,
+            "f1": 0.42857142857142855
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 8,
+            "neutral": 3,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "neutral": 8,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 8,
+            "negative": 3
+          }
+        }
+      },
+      "M1 + híbrido (controle)": {
+        "accuracy": 0.26666666666666666,
+        "macroP": 0.08888888888888889,
+        "macroR": 0.3333333333333333,
+        "macroF1": 0.14035087719298248,
+        "perClass": {
+          "positive": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 11,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          },
+          "neutral": {
+            "tp": 8,
+            "fp": 22,
+            "fn": 0,
+            "precision": 0.26666666666666666,
+            "recall": 1,
+            "f1": 0.4210526315789474
+          },
+          "negative": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 11,
+            "precision": 0,
+            "recall": 0,
+            "f1": 0
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 0,
+            "neutral": 11,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "neutral": 8,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 11,
+            "negative": 0
+          }
+        }
+      }
+    },
+    "all": {
+      "M3 Palavras-chave": {
+        "accuracy": 0.6333333333333333,
+        "macroP": 0.8166666666666668,
+        "macroR": 0.6507936507936508,
+        "macroF1": 0.6370040786058584,
+        "perClass": {
+          "positive": {
+            "tp": 10,
+            "fp": 0,
+            "fn": 11,
+            "precision": 1,
+            "recall": 0.47619047619047616,
+            "f1": 0.6451612903225806
+          },
+          "neutral": {
+            "tp": 18,
+            "fp": 22,
+            "fn": 0,
+            "precision": 0.45,
+            "recall": 1,
+            "f1": 0.6206896551724138
+          },
+          "negative": {
+            "tp": 10,
+            "fp": 0,
+            "fn": 11,
+            "precision": 1,
+            "recall": 0.47619047619047616,
+            "f1": 0.6451612903225806
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 10,
+            "neutral": 11,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "neutral": 18,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 11,
+            "negative": 10
+          }
+        }
+      },
+      "M1 RoBERTa": {
+        "accuracy": 0.36666666666666664,
+        "macroP": 0.7738095238095237,
+        "macroR": 0.3968253968253969,
+        "macroF1": 0.27810419114766943,
+        "perClass": {
+          "positive": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 19,
+            "precision": 1,
+            "recall": 0.09523809523809523,
+            "f1": 0.17391304347826084
+          },
+          "neutral": {
+            "tp": 18,
+            "fp": 38,
+            "fn": 0,
+            "precision": 0.32142857142857145,
+            "recall": 1,
+            "f1": 0.4864864864864865
+          },
+          "negative": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 19,
+            "precision": 1,
+            "recall": 0.09523809523809523,
+            "f1": 0.17391304347826084
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 2,
+            "neutral": 19,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "neutral": 18,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 19,
+            "negative": 2
+          }
+        }
+      },
+      "M2 DistilBERT": {
+        "accuracy": 0.6,
+        "macroP": 0.6851851851851852,
+        "macroR": 0.5846560846560847,
+        "macroF1": 0.5716374269005847,
+        "perClass": {
+          "positive": {
+            "tp": 18,
+            "fp": 18,
+            "fn": 3,
+            "precision": 0.5,
+            "recall": 0.8571428571428571,
+            "f1": 0.631578947368421
+          },
+          "neutral": {
+            "tp": 5,
+            "fp": 1,
+            "fn": 13,
+            "precision": 0.8333333333333334,
+            "recall": 0.2777777777777778,
+            "f1": 0.4166666666666667
+          },
+          "negative": {
+            "tp": 13,
+            "fp": 5,
+            "fn": 8,
+            "precision": 0.7222222222222222,
+            "recall": 0.6190476190476191,
+            "f1": 0.6666666666666666
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 18,
+            "neutral": 1,
+            "negative": 2
+          },
+          "neutral": {
+            "positive": 10,
+            "neutral": 5,
+            "negative": 3
+          },
+          "negative": {
+            "positive": 8,
+            "neutral": 0,
+            "negative": 13
+          }
+        }
+      },
+      "M2 + θ simples": {
+        "accuracy": 0.6333333333333333,
+        "macroP": 0.7610939112487101,
+        "macroR": 0.6428571428571429,
+        "macroF1": 0.6256410256410256,
+        "perClass": {
+          "positive": {
+            "tp": 16,
+            "fp": 3,
+            "fn": 5,
+            "precision": 0.8421052631578947,
+            "recall": 0.7619047619047619,
+            "f1": 0.8
+          },
+          "neutral": {
+            "tp": 15,
+            "fp": 19,
+            "fn": 3,
+            "precision": 0.4411764705882353,
+            "recall": 0.8333333333333334,
+            "f1": 0.576923076923077
+          },
+          "negative": {
+            "tp": 7,
+            "fp": 0,
+            "fn": 14,
+            "precision": 1,
+            "recall": 0.3333333333333333,
+            "f1": 0.5
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 16,
+            "neutral": 5,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 3,
+            "neutral": 15,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 14,
+            "negative": 7
+          }
+        }
+      },
+      "M2 + híbrido (produção)": {
+        "accuracy": 0.7,
+        "macroP": 0.7833333333333333,
+        "macroR": 0.7063492063492064,
+        "macroF1": 0.6998098610018358,
+        "perClass": {
+          "positive": {
+            "tp": 17,
+            "fp": 3,
+            "fn": 4,
+            "precision": 0.85,
+            "recall": 0.8095238095238095,
+            "f1": 0.8292682926829269
+          },
+          "neutral": {
+            "tp": 15,
+            "fp": 15,
+            "fn": 3,
+            "precision": 0.5,
+            "recall": 0.8333333333333334,
+            "f1": 0.625
+          },
+          "negative": {
+            "tp": 10,
+            "fp": 0,
+            "fn": 11,
+            "precision": 1,
+            "recall": 0.47619047619047616,
+            "f1": 0.6451612903225806
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 17,
+            "neutral": 4,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 3,
+            "neutral": 15,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 11,
+            "negative": 10
+          }
+        }
+      },
+      "M1 + híbrido (controle)": {
+        "accuracy": 0.36666666666666664,
+        "macroP": 0.7738095238095237,
+        "macroR": 0.3968253968253969,
+        "macroF1": 0.27810419114766943,
+        "perClass": {
+          "positive": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 19,
+            "precision": 1,
+            "recall": 0.09523809523809523,
+            "f1": 0.17391304347826084
+          },
+          "neutral": {
+            "tp": 18,
+            "fp": 38,
+            "fn": 0,
+            "precision": 0.32142857142857145,
+            "recall": 1,
+            "f1": 0.4864864864864865
+          },
+          "negative": {
+            "tp": 2,
+            "fp": 0,
+            "fn": 19,
+            "precision": 1,
+            "recall": 0.09523809523809523,
+            "f1": 0.17391304347826084
+          }
+        },
+        "confusion": {
+          "positive": {
+            "positive": 2,
+            "neutral": 19,
+            "negative": 0
+          },
+          "neutral": {
+            "positive": 0,
+            "neutral": 18,
+            "negative": 0
+          },
+          "negative": {
+            "positive": 0,
+            "neutral": 19,
+            "negative": 2
+          }
+        }
+      }
+    }
+  },
+  "theta_sweep": [
+    {
+      "theta": 0.4,
+      "simple": 0.6190914997932541,
+      "hybrid": 0.6190914997932541
+    },
+    {
+      "theta": 0.45,
+      "simple": 0.6358503958503958,
+      "hybrid": 0.6358503958503958
+    },
+    {
+      "theta": 0.5,
+      "simple": 0.6385487528344672,
+      "hybrid": 0.6385487528344672
+    },
+    {
+      "theta": 0.55,
+      "simple": 0.6837121212121212,
+      "hybrid": 0.69807278208441
+    },
+    {
+      "theta": 0.6,
+      "simple": 0.6466435757875639,
+      "hybrid": 0.6800369284240252
+    },
+    {
+      "theta": 0.65,
+      "simple": 0.6256410256410256,
+      "hybrid": 0.6998098610018358
+    },
+    {
+      "theta": 0.7,
+      "simple": 0.5228411435307986,
+      "hybrid": 0.6379217273954115
+    },
+    {
+      "theta": 0.75,
+      "simple": 0.513015873015873,
+      "hybrid": 0.6336911624267946
+    },
+    {
+      "theta": 0.8,
+      "simple": 0.4710626185958254,
+      "hybrid": 0.6336911624267946
+    },
+    {
+      "theta": 0.85,
+      "simple": 0.3855572213893053,
+      "hybrid": 0.580979284369115
+    },
+    {
+      "theta": 0.9,
+      "simple": 0.36839826839826834,
+      "hybrid": 0.5958333333333333
+    },
+    {
+      "theta": 0.95,
+      "simple": 0.2925886898489638,
+      "hybrid": 0.5784417415829367
+    }
+  ],
+  "cross_validation": {
+    "chosen_thetas": [
+      0.65,
+      0.65,
+      0.55,
+      0.65,
+      0.55
+    ],
+    "accuracy": 0.6833333333333333,
+    "macroP": 0.7575757575757575,
+    "macroR": 0.6878306878306879,
+    "macroF1": 0.6815182056383661,
+    "perClass": {
+      "positive": {
+        "tp": 17,
+        "fp": 5,
+        "fn": 4,
+        "precision": 0.7727272727272727,
+        "recall": 0.8095238095238095,
+        "f1": 0.7906976744186046
+      },
+      "neutral": {
+        "tp": 14,
+        "fp": 14,
+        "fn": 4,
+        "precision": 0.5,
+        "recall": 0.7777777777777778,
+        "f1": 0.6086956521739131
+      },
+      "negative": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 11,
+        "precision": 1,
+        "recall": 0.47619047619047616,
+        "f1": 0.6451612903225806
+      }
+    },
+    "confusion": {
+      "positive": {
+        "positive": 17,
+        "neutral": 4,
+        "negative": 0
+      },
+      "neutral": {
+        "positive": 4,
+        "neutral": 14,
+        "negative": 0
+      },
+      "negative": {
+        "positive": 1,
+        "neutral": 10,
+        "negative": 10
+      }
+    }
+  },
+  "latency_ms": {
+    "M1": {
+      "mean": 262.8696966666667,
+      "p50": 265.21840000000157,
+      "p95": 378.35119999999915,
+      "max": 409.21770000000106
+    },
+    "M2": {
+      "mean": 134.73264833333312,
+      "p50": 135.1148000000012,
+      "p95": 220.31180000000313,
+      "max": 305.28399999999965
+    },
+    "M3": {
+      "mean": 0.15115333333333184,
+      "p50": 0.1084999999984575,
+      "p95": 0.24170000000049185,
+      "max": 2.06919999999991
+    }
+  },
+  "raw": {
+    "A": [
+      {
+        "text": "Lugar maravilhoso, família adorou, voltaremos com certeza. Atendimento impecável e preço justo.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.706
+          },
+          "latency_ms": 300.01590000000033
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.94
+          },
+          "latency_ms": 176.76560000000063
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 1
+          },
+          "latency_ms": 2.06919999999991
+        }
+      },
+      {
+        "text": "Experiência incrível! A vista é deslumbrante e o guia muito atencioso. Recomendo muito.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.796
+          },
+          "latency_ms": 280.3804
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.504
+          },
+          "latency_ms": 100.46869999999944
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 1
+          },
+          "latency_ms": 0.11700000000018917
+        }
+      },
+      {
+        "text": "Evento bem organizado, música excelente e segurança presente. Sai satisfeito.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.678
+          },
+          "latency_ms": 282.9366000000009
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.98
+          },
+          "latency_ms": 110.29550000000017
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 1
+          },
+          "latency_ms": 0.10829999999987194
+        }
+      },
+      {
+        "text": "Comida deliciosa, ambiente limpo e acolhedor. Um dos melhores restaurantes de São Paulo.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.633
+          },
+          "latency_ms": 249.73329999999987
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.965
+          },
+          "latency_ms": 160.0046999999995
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 1
+          },
+          "latency_ms": 0.24170000000049185
+        }
+      },
+      {
+        "text": "Parque muito bonito, trilha sinalizada e equipe simpática. Valeu cada centavo.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.806
+          },
+          "latency_ms": 341.4863000000005
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.978
+          },
+          "latency_ms": 133.53560000000107
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.1603000000013708
+        }
+      },
+      {
+        "text": "Atendentes educados, fila organizada, show fantástico. Perfeito!",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.607
+          },
+          "latency_ms": 304.0141999999996
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.964
+          },
+          "latency_ms": 135.1148000000012
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 1
+          },
+          "latency_ms": 0.11279999999896972
+        }
+      },
+      {
+        "text": "A feira tinha produtos regionais autênticos e preços acessíveis. Adorei cada estande.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.711
+          },
+          "latency_ms": 265.21840000000157
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.662
+          },
+          "latency_ms": 81.08669999999984
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 1
+          },
+          "latency_ms": 0.14360000000124273
+        }
+      },
+      {
+        "text": "Museu incrível, curadoria impecável e visita guiada muito enriquecedora.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.87
+          },
+          "latency_ms": 248.58250000000044
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.768
+          },
+          "latency_ms": 146.58870000000024
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 1
+          },
+          "latency_ms": 0.12960000000020955
+        }
+      },
+      {
+        "text": "Passamos o dia inteiro e foi ótimo! Crianças se divertiram muito e adultos também.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.782
+          },
+          "latency_ms": 272.4840000000004
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.816
+          },
+          "latency_ms": 135.65680000000066
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 1
+          },
+          "latency_ms": 0.17749999999978172
+        }
+      },
+      {
+        "text": "Estrutura excelente, banheiros limpos, estacionamento fácil. Experiência top!",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.871
+          },
+          "latency_ms": 223.0025000000005
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.992
+          },
+          "latency_ms": 113.06869999999981
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 1
+          },
+          "latency_ms": 0.14749999999912689
+        }
+      },
+      {
+        "text": "Péssimo! Nos assaltaram na saída. Segurança inexistente. Evitem a todo custo.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.616
+          },
+          "latency_ms": 286.8111000000008
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.555
+          },
+          "latency_ms": 93.48459999999977
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 1
+          },
+          "latency_ms": 0.12579999999979918
+        }
+      },
+      {
+        "text": "Lugar horrível, sujo, com cheiro ruim e atendimento desrespeitoso. Nunca mais.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.549
+          },
+          "latency_ms": 297.7493999999988
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.785
+          },
+          "latency_ms": 114.41140000000087
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 1
+          },
+          "latency_ms": 0.12730000000010477
+        }
+      },
+      {
+        "text": "Golpe completo! Pagamos caro e não entregaram o que prometeram. Fraude!",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.608
+          },
+          "latency_ms": 265.1707999999999
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.668
+          },
+          "latency_ms": 122.63370000000032
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 1
+          },
+          "latency_ms": 0.09159999999974389
+        }
+      },
+      {
+        "text": "Evento perigoso. Brigas na entrada, segurança sumiu. Registrei boletim de ocorrência.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.905
+          },
+          "latency_ms": 330.53720000000067
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.868
+          },
+          "latency_ms": 75.92189999999937
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 1
+          },
+          "latency_ms": 0.09090000000105647
+        }
+      },
+      {
+        "text": "Terrível experiência. Fila enorme, estrutura precária e comida horrível.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.666
+          },
+          "latency_ms": 378.35119999999915
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.646
+          },
+          "latency_ms": 164.83749999999964
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 1
+          },
+          "latency_ms": 0.10670000000027358
+        }
+      },
+      {
+        "text": "Decepcionante. Propaganda enganosa, local abandonado e preço abusivo.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.694
+          },
+          "latency_ms": 221.65469999999914
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.925
+          },
+          "latency_ms": 162.15509999999995
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 1
+          },
+          "latency_ms": 0.09420000000136497
+        }
+      },
+      {
+        "text": "Cuidado! Roubaram minha carteira lá dentro e a segurança não fez nada.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.706
+          },
+          "latency_ms": 305.5578999999998
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.628
+          },
+          "latency_ms": 110.62930000000051
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 1
+          },
+          "latency_ms": 0.09509999999863794
+        }
+      },
+      {
+        "text": "Lamentável. Prometeram show de qualidade e foi uma vergonha. Revoltante.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.729
+          },
+          "latency_ms": 238.28659999999945
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.646
+          },
+          "latency_ms": 162.69530000000304
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 1
+          },
+          "latency_ms": 0.09340000000156579
+        }
+      },
+      {
+        "text": "Ambiente hostil, pessoas agressivas e sem controle de lotação. Descaso total.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.831
+          },
+          "latency_ms": 271.9267
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.411
+          },
+          "latency_ms": 105.72769999999946
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 1
+          },
+          "latency_ms": 0.09460000000035507
+        }
+      },
+      {
+        "text": "Serviço péssimo, esperamos 2 horas e a comida chegou fria e sem sabor. Inadmissível.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.814
+          },
+          "latency_ms": 409.21770000000106
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.606
+          },
+          "latency_ms": 148.1758000000009
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 1
+          },
+          "latency_ms": 0.09739999999874271
+        }
+      },
+      {
+        "text": "Fui no fim de semana. Estava cheio mas ok. Preço médio, nada especial.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.765
+          },
+          "latency_ms": 270.64979999999923
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.446
+          },
+          "latency_ms": 305.28399999999965
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.23149999999805004
+        }
+      },
+      {
+        "text": "Local razoável. Algumas partes boas, outras precisam de manutenção.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.876
+          },
+          "latency_ms": 123.33929999999964
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.705
+          },
+          "latency_ms": 46.8640000000014
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.11209999999846332
+        }
+      },
+      {
+        "text": "Evento comum, não foi nem bom nem ruim. Cumpriu o que prometeu.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.866
+          },
+          "latency_ms": 225.311099999999
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.459
+          },
+          "latency_ms": 143.0037999999986
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.15390000000115833
+        }
+      },
+      {
+        "text": "Visitei na terça de manhã. Pouco movimento, tranquilo, mas sem nada marcante.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.695
+          },
+          "latency_ms": 357.8419000000031
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.364
+          },
+          "latency_ms": 187.57589999999982
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.11669999999867287
+        }
+      },
+      {
+        "text": "Estive lá uma vez. Tudo funcionou normalmente, sem maiores problemas ou destaques.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.858
+          },
+          "latency_ms": 310.15769999999975
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.532
+          },
+          "latency_ms": 112.50139999999737
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.06970000000001164
+        }
+      },
+      {
+        "text": "O lugar existe há muitos anos e mantém o padrão de sempre. Nem melhorou nem piorou.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.874
+          },
+          "latency_ms": 332.20620000000054
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.452
+          },
+          "latency_ms": 101.7419000000009
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.11960000000181026
+        }
+      },
+      {
+        "text": "Fui com amigos. Foi ok. Alguns gostaram mais, outros menos. Experiência dividida.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.705
+          },
+          "latency_ms": 282.71140000000014
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.878
+          },
+          "latency_ms": 116.53429999999935
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.0904000000009546
+        }
+      },
+      {
+        "text": "Estrutura básica, serviço dentro do esperado. Nada impressionante.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.833
+          },
+          "latency_ms": 251.6219999999994
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.644
+          },
+          "latency_ms": 73.34199999999691
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.10060000000157743
+        }
+      },
+      {
+        "text": "Entrada fácil, ambiente simples, saída tranquila. Cumprimento padrão.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.688
+          },
+          "latency_ms": 257.1352999999981
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.82
+          },
+          "latency_ms": 183.6226999999999
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.1489000000001397
+        }
+      },
+      {
+        "text": "Fomos em grupo. A maioria achou mediano. Não recomendaria especialmente.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.86
+          },
+          "latency_ms": 294.7186999999976
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.52
+          },
+          "latency_ms": 154.3877999999968
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.08910000000105356
+        }
+      }
+    ],
+    "B": [
+      {
+        "text": "Que lugar gostoso de passar a tarde, saímos de lá com vontade de voltar.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.861
+          },
+          "latency_ms": 282.4174000000021
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.677
+          },
+          "latency_ms": 151.12780000000203
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.12770000000091386
+        }
+      },
+      {
+        "text": "O pôr do sol visto do mirante vale a viagem inteira, sem exagero.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.864
+          },
+          "latency_ms": 270.494200000001
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.691
+          },
+          "latency_ms": 120.0711999999985
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.11340000000200234
+        }
+      },
+      {
+        "text": "Show de primeira, banda afinadíssima e o público cantando junto o tempo todo.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.852
+          },
+          "latency_ms": 362.7409000000007
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.839
+          },
+          "latency_ms": 169.79599999999846
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.2639000000017404
+        }
+      },
+      {
+        "text": "Restaurante caprichado, porção generosa e o garçom super gente boa.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.7
+          },
+          "latency_ms": 202.77230000000054
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.946
+          },
+          "latency_ms": 102.547300000002
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.09809999999924912
+        }
+      },
+      {
+        "text": "Não esperava muito, mas me surpreendeu demais. Já quero ir de novo.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.83
+          },
+          "latency_ms": 237.02549999999974
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.407
+          },
+          "latency_ms": 200.02630000000136
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.0989000000008673
+        }
+      },
+      {
+        "text": "As crianças não queriam ir embora, programa certeiro para a família.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.815
+          },
+          "latency_ms": 186.32740000000194
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.444
+          },
+          "latency_ms": 119.07369999999719
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.11869999999908032
+        }
+      },
+      {
+        "text": "Trilha bem cuidada, sinalização clara e uma cachoeira de tirar o fôlego.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.841
+          },
+          "latency_ms": 402.3882999999987
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.696
+          },
+          "latency_ms": 68.44319999999789
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.09820000000036089
+        }
+      },
+      {
+        "text": "Melhor pastel da cidade, massa sequinha e recheio farto. Nota mil.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.866
+          },
+          "latency_ms": 234.83320000000094
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.821
+          },
+          "latency_ms": 155.14800000000105
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.1401000000005297
+        }
+      },
+      {
+        "text": "Organização impecável do começo ao fim, dá gosto ver evento assim.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.854
+          },
+          "latency_ms": 200.18399999999747
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.535
+          },
+          "latency_ms": 102.82099999999991
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 1
+          },
+          "latency_ms": 0.125
+        }
+      },
+      {
+        "text": "Atendimento nota dez, resolveram nosso problema na hora com muita educação.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.821
+          },
+          "latency_ms": 264.7608999999975
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.514
+          },
+          "latency_ms": 114.83629999999903
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.10580000000118162
+        }
+      },
+      {
+        "text": "Levaram meu celular na fila e ninguém da organização apareceu para ajudar.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.882
+          },
+          "latency_ms": 193.83399999999892
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.579
+          },
+          "latency_ms": 146.03749999999854
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.1084999999984575
+        }
+      },
+      {
+        "text": "Pagamos ingresso VIP e ficamos espremidos lá atrás sem enxergar o palco.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.884
+          },
+          "latency_ms": 223.57380000000194
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.424
+          },
+          "latency_ms": 138.85819999999876
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.09339999999792781
+        }
+      },
+      {
+        "text": "Banheiro imundo, sem papel e com fila de quarenta minutos.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.891
+          },
+          "latency_ms": 149.13560000000143
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.478
+          },
+          "latency_ms": 176.20060000000012
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.08819999999832362
+        }
+      },
+      {
+        "text": "Nunca mais piso lá, fomos tratados com total grosseria na entrada.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.644
+          },
+          "latency_ms": 194.8179999999993
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.349
+          },
+          "latency_ms": 184.0087999999996
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.12989999999990687
+        }
+      },
+      {
+        "text": "A comida veio crua por dentro e ainda cobraram taxa de serviço.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.874
+          },
+          "latency_ms": 187.92229999999836
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.681
+          },
+          "latency_ms": 46.58499999999913
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.09279999999853317
+        }
+      },
+      {
+        "text": "Rua escura, sem policiamento, ficamos com medo de voltar para o carro.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.881
+          },
+          "latency_ms": 221.05010000000038
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.409
+          },
+          "latency_ms": 115.97509999999966
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.09270000000105938
+        }
+      },
+      {
+        "text": "Cobraram o dobro do preço da placa e se recusaram a dar nota fiscal.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.892
+          },
+          "latency_ms": 283.4493000000002
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.595
+          },
+          "latency_ms": 137.37539999999717
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.10139999999955762
+        }
+      },
+      {
+        "text": "Que furada, o passeio anunciado de três horas durou quarenta minutos.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.863
+          },
+          "latency_ms": 249.34339999999793
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.82
+          },
+          "latency_ms": 148.25180000000182
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.10299999999915599
+        }
+      },
+      {
+        "text": "Brinquedos quebrados e monitores mexendo no celular em vez de olhar as crianças.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.812
+          },
+          "latency_ms": 292.0020000000004
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.532
+          },
+          "latency_ms": 201.27460000000065
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.10120000000097207
+        }
+      },
+      {
+        "text": "Esperamos uma hora pela mesa e o lugar estava vazio. Desorganização total.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.72
+          },
+          "latency_ms": 207.84529999999722
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.727
+          },
+          "latency_ms": 116.83380000000034
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.11369999999806168
+        }
+      },
+      {
+        "text": "O museu fica perto do metrô e a entrada custa vinte reais.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.891
+          },
+          "latency_ms": 266.738400000002
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.547
+          },
+          "latency_ms": 73.73960000000079
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.10510000000067521
+        }
+      },
+      {
+        "text": "Comida normal, preço dentro da média da região.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.894
+          },
+          "latency_ms": 176.5709999999999
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.503
+          },
+          "latency_ms": 109.42499999999927
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.1466999999975087
+        }
+      },
+      {
+        "text": "Dá para conhecer em uma hora, não precisa reservar o dia inteiro.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.891
+          },
+          "latency_ms": 234.53629999999976
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.391
+          },
+          "latency_ms": 143.47090000000026
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.1647000000011758
+        }
+      },
+      {
+        "text": "Tinha bastante gente no domingo, durante a semana deve ser mais vazio.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.818
+          },
+          "latency_ms": 219.6730000000025
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "negative",
+            "score": 0.519
+          },
+          "latency_ms": 114.37770000000091
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.08589999999821885
+        }
+      },
+      {
+        "text": "O parque é grande, tem lanchonete e aluguel de bicicleta.",
+        "label": "positive",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.648
+          },
+          "latency_ms": 285.8810000000012
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.811
+          },
+          "latency_ms": 220.31180000000313
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.09100000000034925
+        }
+      },
+      {
+        "text": "Não é ruim, mas também não achei que vale tanto o hype.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.839
+          },
+          "latency_ms": 177.42889999999898
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.523
+          },
+          "latency_ms": 152.45699999999852
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.09130000000004657
+        }
+      },
+      {
+        "text": "O show começou com meia hora de atraso e terminou no horário previsto.",
+        "label": "negative",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.879
+          },
+          "latency_ms": 265.6732000000011
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.434
+          },
+          "latency_ms": 82.98760000000038
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.11259999999674619
+        }
+      },
+      {
+        "text": "Algumas atrações estavam fechadas para reforma, as outras funcionando.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.855
+          },
+          "latency_ms": 371.9364000000023
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "positive",
+            "score": 0.384
+          },
+          "latency_ms": 83.53800000000047
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.09739999999874271
+        }
+      },
+      {
+        "text": "É um restaurante simples, sem grandes surpresas para o bem ou para o mal.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.717
+          },
+          "latency_ms": 206.14180000000124
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.366
+          },
+          "latency_ms": 174.36109999999826
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.11440000000584405
+        }
+      },
+      {
+        "text": "Achei parecido com outros mirantes da cidade, nada muito diferente.",
+        "label": "neutral",
+        "M1": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.813
+          },
+          "latency_ms": 241.87309999999707
+        },
+        "M2": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.477
+          },
+          "latency_ms": 235.88269999999466
+        },
+        "M3": {
+          "raw": {
+            "sentiment": "neutral",
+            "score": 0.5
+          },
+          "latency_ms": 0.08849999999802094
+        }
+      }
+    ],
+    "collected_at": "2026-10-26T11:30:26.220Z"
+  }
+}

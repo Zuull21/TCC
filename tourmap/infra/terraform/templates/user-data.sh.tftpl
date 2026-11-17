@@ -1,0 +1,85 @@
+#!/bin/bash
+# TourMap — executado UMA ÚNICA VEZ, no primeiro boot da instância.
+# Tudo que pode mudar depois mora no SSM (run-script) e é lido a cada boot.
+set -euxo pipefail
+exec > >(tee -a /var/log/tourmap-bootstrap.log) 2>&1
+
+# ── Docker + Compose ─────────────────────────────────────────────────────────
+dnf install -y docker
+mkdir -p /usr/libexec/docker/cli-plugins
+curl -fsSL --retry 5 \
+  "https://github.com/docker/compose/releases/latest/download/docker-compose-linux-$(uname -m)" \
+  -o /usr/libexec/docker/cli-plugins/docker-compose
+chmod +x /usr/libexec/docker/cli-plugins/docker-compose
+
+# ── Disco de dados (/data) ───────────────────────────────────────────────────
+# O disco é anexado logo após a instância subir: espera ele aparecer.
+DEV=/dev/disk/by-id/nvme-Amazon_Elastic_Block_Store_${data_volume_id}
+for i in $(seq 1 120); do
+  [ -e "$DEV" ] && break
+  [ -e /dev/xvdf ] && DEV=/dev/xvdf && break   # instâncias não-Nitro
+  sleep 5
+done
+[ -e "$DEV" ] || { echo "Disco de dados não apareceu"; exit 1; }
+
+# Só formata se o disco estiver vazio. Um disco com dados NUNCA é formatado.
+if ! blkid "$DEV"; then
+  mkfs.xfs "$DEV"
+fi
+UUID=$(blkid -s UUID -o value "$DEV")
+mkdir -p /data
+grep -q "$UUID" /etc/fstab || echo "UUID=$UUID /data xfs defaults,nofail 0 2" >> /etc/fstab
+mount -a
+
+# Docker guarda imagens e volumes (MySQL, modelos, certificados) no disco de dados
+mkdir -p /data/docker /etc/docker
+cat > /etc/docker/daemon.json <<'JSON'
+{
+  "data-root": "/data/docker",
+  "log-driver": "json-file",
+  "log-opts": { "max-size": "10m", "max-file": "3" }
+}
+JSON
+systemctl enable --now docker
+
+# ── Serviço que sobe o TourMap a cada boot ───────────────────────────────────
+mkdir -p /opt/tourmap
+
+# Baixa a versão atual do run-script do SSM e executa
+cat > /usr/local/bin/tourmap-run <<'SCRIPT'
+#!/bin/bash
+set -euo pipefail
+aws ssm get-parameter --region ${region} --name ${run_script_param} \
+  --query Parameter.Value --output text > /opt/tourmap/run.sh
+exec bash /opt/tourmap/run.sh
+SCRIPT
+chmod +x /usr/local/bin/tourmap-run
+
+cat > /etc/systemd/system/tourmap.service <<'UNIT'
+[Unit]
+Description=TourMap (docker compose)
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+RequiresMountsFor=/data
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/tourmap
+ExecStart=/usr/local/bin/tourmap-run
+# deploy = reload: atualiza imagens e recria só os containers que mudaram
+ExecReload=/usr/local/bin/tourmap-run
+ExecStop=/usr/bin/docker compose stop
+TimeoutStartSec=1200
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+UNIT
+
+systemctl daemon-reload
+systemctl enable tourmap.service
+# Primeiro boot: as imagens podem ainda não estar no ECR; o deploy resolve.
+systemctl start tourmap.service || true

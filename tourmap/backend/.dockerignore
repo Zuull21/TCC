@@ -1,0 +1,16 @@
+node_modules
+.model-cache
+.env
+.env.*
+!.env.example
+coverage
+src/tests
+scripts/sentiment-evaluation*.json
+*.log
+checklist.sh
+API.md
+Dockerfile
+.dockerignore
+scripts/dados-graficos
+scripts/*.py
+scripts/.catalogo-cache.json

@@ -1,0 +1,38 @@
+# SITE_ADDRESS:
+#   local    → :80 (HTTP puro, sem certificado)
+#   produção → 54-12-34-56.sslip.io (Caddy emite o certificado HTTPS sozinho)
+{$SITE_ADDRESS::80} {
+	encode zstd gzip
+
+	# API REST e WebSocket (Socket.IO) vão para o backend, no mesmo domínio:
+	# sem CORS e sem URL de API diferente entre dev e produção.
+	handle /api/* {
+		reverse_proxy backend:3001
+	}
+	handle /socket.io/* {
+		reverse_proxy backend:3001
+	}
+
+	# SPA: rotas do React Router caem no index.html
+	handle {
+		root * /srv
+		try_files {path} /index.html
+		file_server
+	}
+
+	# Arquivos do Vite têm hash no nome: podem ficar em cache para sempre
+	@assets path /assets/*
+	header @assets Cache-Control "public, max-age=31536000, immutable"
+
+	# CSP: só carrega scripts do próprio site. Estilos de fora: Google Fonts e o CSS
+	# do Leaflet (unpkg). Imagens: qualquer HTTPS (fotos do Wikimedia e URLs dos
+	# usuários). Conexões: o próprio site (API e WebSocket) e a busca do Nominatim.
+	header {
+		Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://nominatim.openstreetmap.org; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		X-Frame-Options DENY
+		-Server
+	}
+}

@@ -1,0 +1,21 @@
+# Copie para terraform.tfvars (ignorado pelo Git). Tudo é opcional.
+
+region = "us-east-1"
+
+# AWS Academy (Learner Lab): descomente as duas linhas abaixo
+# instance_profile_name = "LabInstanceProfile"
+# enable_snapshots      = false
+# instance_type   = "t3.medium"
+# sentiment_dtype = "fp32"   # "q8" permite usar t3.small
+
+# Alerta de gastos por e-mail (recomendado)
+# alert_email        = "conta.do.projeto@gmail.com"
+# monthly_budget_usd = 15
+
+# SMTP — só se quiser exigir o código de verificação no cadastro.
+# Sem isto, a verificação fica desligada e o cadastro entra direto.
+# email_host = "smtp.gmail.com"
+# email_port = 587
+# email_user = "conta.do.projeto@gmail.com"
+# email_pass = "xxxx xxxx xxxx xxxx"   # senha de app do Gmail
+# email_from = "conta.do.projeto@gmail.com"

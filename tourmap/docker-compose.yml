@@ -1,0 +1,85 @@
+# TourMap — stack completa: MySQL + API + Caddy (frontend + HTTPS)
+#
+# Local:    cp .env.example .env  →  docker compose up --build   →  http://localhost
+# Produção: a instância EC2 recebe este arquivo e o .env via SSM Parameter Store
+#           e roda `docker compose pull && docker compose up -d` (infra/terraform).
+#
+# Dados ficam em volumes nomeados. Na EC2 o Docker guarda volumes no disco de
+# dados (/data), que sobrevive a desligar e religar a instância.
+
+name: tourmap
+
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-tourmap}
+      MYSQL_USER: ${DB_USER:-tourmap}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?defina DB_PASSWORD no .env}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?defina DB_ROOT_PASSWORD no .env}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  backend:
+    image: ${REGISTRY:-tourmap}/tourmap-backend:${TAG:-latest}
+    build: ./backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    # Lista explícita: o backend não recebe DB_ROOT_PASSWORD nem nada além do que usa
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-tourmap}
+      DB_USER: ${DB_USER:-tourmap}
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET:?defina JWT_SECRET no .env}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
+      EMAIL_VERIFICATION: ${EMAIL_VERIFICATION:-off}
+      EMAIL_HOST: ${EMAIL_HOST:-}
+      EMAIL_PORT: ${EMAIL_PORT:-587}
+      EMAIL_USER: ${EMAIL_USER:-}
+      EMAIL_PASS: ${EMAIL_PASS:-}
+      EMAIL_FROM: ${EMAIL_FROM:-}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost}
+      SENTIMENT_ENGINE: ${SENTIMENT_ENGINE:-local}
+      SENTIMENT_DTYPE: ${SENTIMENT_DTYPE:-fp32}
+      HUGGINGFACE_API_KEY: ${HUGGINGFACE_API_KEY:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      SEED_PASSWORD: ${SEED_PASSWORD:-}
+      MODEL_CACHE_DIR: /models
+    volumes:
+      - models:/models
+
+  web:
+    image: ${REGISTRY:-tourmap}/tourmap-frontend:${TAG:-latest}
+    build: ./frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:-:80}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - caddy-data:/data   # certificados HTTPS: preservar evita reemitir a cada boot
+      - caddy-config:/config
+
+volumes:
+  mysql-data:
+  models:
+  caddy-data:
+  caddy-config:

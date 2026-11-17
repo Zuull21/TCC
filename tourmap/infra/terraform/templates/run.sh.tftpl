@@ -1,0 +1,38 @@
+#!/bin/bash
+# TourMap — roda a cada boot e a cada deploy (systemctl start/reload tourmap).
+# Guardado no SSM: alterar aqui + terraform apply muda o comportamento sem
+# recriar a instância.
+set -euo pipefail
+cd /opt/tourmap
+
+# 1. docker-compose.yml e .env vêm do Parameter Store
+aws ssm get-parameter --region ${region} --name ${param_prefix}/compose \
+  --query Parameter.Value --output text > docker-compose.yml
+
+aws ssm get-parameters-by-path --region ${region} --path ${param_prefix}/env/ \
+  --with-decryption --query 'Parameters[].[Name,Value]' --output text \
+  | awk -F'\t' '{ n = $1; sub(/.*\//, "", n); printf "%s=\047%s\047\n", n, $2 }' > .env.new
+chmod 600 .env.new
+mv .env.new .env
+
+# 2. Login no ECR e imagens mais recentes
+REGISTRY=$(grep '^REGISTRY=' .env | cut -d"'" -f2)
+aws ecr get-login-password --region ${region} \
+  | docker login --username AWS --password-stdin "$REGISTRY"
+docker compose pull --quiet
+
+# 3. Sobe/atualiza (só recria o que mudou) e limpa imagens antigas
+docker compose up -d --no-build --remove-orphans
+docker image prune -f
+
+# 4. Traz os 2 eventos de demonstração para a data de hoje (idempotente, não
+#    duplica nada). Assim, a cada vez que o lab liga o servidor, a demo está atual.
+seeded=0
+for i in $(seq 1 30); do
+  if docker compose exec -T backend node scripts/seed-events.js >/var/log/tourmap-seed.log 2>&1; then
+    seeded=1
+    break
+  fi
+  sleep 10 # backend ainda subindo
+done
+[ "$seeded" = 1 ] || echo "Aviso: seed dos eventos de demonstração falhou (veja /var/log/tourmap-seed.log)"

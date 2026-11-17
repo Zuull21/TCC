@@ -1,0 +1,72 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# TourMap — vai para o Git só o que o sistema precisa para rodar e ser
+# reproduzido: código-fonte, testes, lockfiles, Docker, Terraform, README e o
+# kit mínimo de avaliação do modelo (frases rotuladas, script e resultado).
+# Fica de fora: segredos, gerados, documentação interna, artigo, gráficos e
+# arquivos locais.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Segredos (NUNCA versionar) ───────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+id_rsa*
+*.tfvars
+!*.tfvars.example
+
+# ── Dependências e builds ────────────────────────────────────────────────────
+node_modules/
+dist/
+build/
+.vite/
+coverage/
+*.tsbuildinfo
+__pycache__/
+*.pyc
+
+# ── Modelos de IA baixados (~1 GB, baixados de novo no primeiro uso) ─────────
+.model-cache/
+
+# ── Terraform: estado e cache local (o estado fica no S3) ────────────────────
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+infra/terraform/backend.hcl
+# .terraform.lock.hcl FICA versionado: fixa as versões dos providers
+
+# ── Documentação interna, artigo e apresentação ──────────────────────────────
+# (só o README.md vai para o repositório)
+*.md
+!README.md
+*.docx
+*.pdf
+*.pptx
+
+# ── Gráficos e ferramentas do artigo ─────────────────────────────────────────
+backend/scripts/*.py
+backend/scripts/dados-graficos/*
+!backend/scripts/dados-graficos/rotulagem/
+backend/scripts/sentiment-evaluation-local-q8.json
+backend/scripts/pontos-turisticos-revisao.csv
+backend/scripts/.catalogo-cache.json
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+
+# ── IDE e sistema operacional ────────────────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.user
+*.local
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*

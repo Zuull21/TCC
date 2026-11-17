@@ -1,0 +1,5 @@
+{
+  "watch": ["server.js", "src"],
+  "ignore": ["src/tests/**", "src/config/pontos-turisticos.json", ".model-cache/**", "scripts/**"],
+  "ext": "js,json"
+}
